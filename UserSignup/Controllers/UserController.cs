@@ -28,9 +28,24 @@ namespace UserSignup.Controllers
         [Route("/User/Add") ]
         public IActionResult Add(User user, string verify)
         {
-            ViewBag.username = user.Username;
+            if (user.Password == verify)
+            {
+                ViewBag.username = user.Username;
 
-            return View("Index");
+                return View("Index");
+            }
+
+            else if (user.Password != verify)
+            {
+                ViewBag.username = user.Username;
+                ViewBag.email = user.Email;
+                return View();
+            }
+
+            else
+            {
+                return View();
+            }
         }
     }
 }
