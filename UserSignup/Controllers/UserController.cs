@@ -35,6 +35,22 @@ namespace UserSignup.Controllers
                 return View("Index");
             }
 
+            else if (user.Password == null)
+            {
+                ViewBag.errorPassword = "Enter a password";
+                ViewBag.username = user.Username;
+                ViewBag.email = user.Email;
+                return View();
+            }
+
+            else if (verify == null)
+            {
+                ViewBag.errorVerify = "Verify your password";
+                ViewBag.username = user.Username;
+                ViewBag.email = user.Email;
+                return View();
+            }
+
             else if (user.Password != verify)
             {
                 ViewBag.username = user.Username;
